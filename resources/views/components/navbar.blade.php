@@ -101,28 +101,39 @@
 
                 </div>
                 <div class="border-t border-white/10 pt-4 pb-3">
-                    <div class="flex items-center px-5">
-                        <div class="shrink-0">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
-                                class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
-                        </div>
-                        <div class="ml-3">
-                            <div class="text-base/5 font-medium text-white">Tom Cook</div>
-                            <div class="text-sm font-medium text-gray-400">tom@example.com</div>
-                        </div>
+                    @if (Auth::check())
+                        <div class="flex items-center px-5">
+                            <div class="shrink-0">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt=""
+                                    class="size-10 rounded-full outline -outline-offset-1 outline-white/10" />
+                            </div>
+                            <div class="ml-3">
+                                <div class="text-base/5 font-medium text-white">{{ Auth::user()->name }}</div>
+                            </div>
 
-                    </div>
-                    <div class="mt-3 space-y-1 px-2">
-                        <a href="/profile"
-                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Your
-                            profile</a>
-                        <a href="/dashboard"
-                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</a>
-                        <a href="#"
-                            class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Sign
-                            out</a>
-                    </div>
+                        </div>
+                        <div class="mt-3 space-y-1 px-2">
+                            <a href="/profile"
+                                class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Your
+                                profile</a>
+                            <a href="/dashboard"
+                                class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Settings</a>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button type="submit"
+                                    class="block rounded-md w-full text-start px-3 py-2 text-base font-medium text-gray-400 hover:bg-white/5 hover:text-white">Sign
+                                    out</button>
+                            </form>
+                        </div>
+                    @else
+                        <button type="button"
+                            class="text-white ml-5 hover:bg-brand-strong box-border border border-blue-800 focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-xs px-3 py-1.5 focus:outline-none"><a
+                                href="/login">Login</a></button>
+                        <button type="button"
+                            class="text-white bg-brand ml-1 hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-xs px-3 py-1.5 focus:outline-none"><a
+                                href="/register">Register</a></button>
+                    @endif
                 </div>
             </el-disclosure>
         </nav>
