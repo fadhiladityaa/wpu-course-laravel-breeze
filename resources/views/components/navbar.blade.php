@@ -47,10 +47,10 @@
                                 @else
                                     <div class="flex text-slate-200 gap-2">
                                         <a class="text-slate-300 font-medium text-sm hover:text-blue-500 hover:underline"
-                                            href="/register">Register</a>
+                                            href="/login">Login</a>
                                         <span>|</span>
                                         <a class="text-slate-300 font-medium text-sm hover:text-blue-500 hover:underline"
-                                            href="/login">Login</a>
+                                            href="/register">Register</a>
                                     </div>
                                 @endif
 
