@@ -1,5 +1,6 @@
 <?php
 namespace App\Models;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
@@ -22,6 +23,12 @@ Class Post extends Model {
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    #[Scope]
+    protected function filters(Builder $query): void
+    {
+        $query->whereHas('author', fn($q) => $q->where('id', Auth::user()->id));
     }
 
     #[Scope]
