@@ -14,7 +14,7 @@ class PostDashboardController extends Controller
     public function index()
     {
         return view('dashboard', [
-            'posts' => Post::latest()->filters()->paginate(5),
+            'posts' => Post::latest()->filters(request(['keyword']))->paginate(5)
         ]);
     }
 

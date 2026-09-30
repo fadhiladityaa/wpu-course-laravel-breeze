@@ -26,10 +26,16 @@ Class Post extends Model {
     }
 
     #[Scope]
-    protected function filters(Builder $query): void
+    protected function filters(Builder $query, array $keyword): void
     {
-        $query->whereHas('author', fn($q) => $q->where('id', Auth::user()->id));
-    }
+        $query->when($keyword['keyword'] ?? false, function(Builder $query, $keyword) {
+            $query->where('title', 'like', '%' . $keyword . '%');
+        });
+
+        $query->when(Auth::check() ?? false, function($query){
+            $query->where('author_id', Auth::user()->id);
+        });
+    } 
 
     #[Scope]
     public function titleSearch(Builder $query, array $keyword): void 
