@@ -13,7 +13,7 @@ class PostDashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard', [
+        return view('dashboard.index', [
             'posts' => Post::latest()->filters(request(['keyword']))->paginate(5)
         ]);
     }
@@ -37,9 +37,12 @@ class PostDashboardController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        //
+        return view('dashboard.show', [
+            'title' => 'Single Post',
+            'post' => $post,
+        ]);
     }
 
     /**
