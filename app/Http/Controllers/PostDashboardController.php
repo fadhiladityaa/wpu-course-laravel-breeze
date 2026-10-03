@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
 
 class PostDashboardController extends Controller
 {
@@ -34,6 +35,21 @@ class PostDashboardController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), [
+            'title' => 'required|min:5|max:255|unique:posts',
+            'category_id' => 'required',
+            'body' => 'required|min:10'
+
+        ], [
+            'title.required' => 'Judulnya wajib diisi woyy',
+            'title.min' => 'Dikit amat judulnya, minimal 5 karakter kocak!',
+            'title.max' => 'Kepanjangan itu judulnya woyy!',
+            'title.unique' => 'WKWK JANGAN PLAGIAT ANYINKK',
+            'category_id.required' => 'Kategori nya dipilih dulu doongg',
+            'body.required' => 'Lah ini yang paling penting malah gaada isinya!',
+            'body.min' => 'Itu blog apa joni elo? pendek amat wkwk'
+        ])->validate();
+
         Post::create([
             'title' => $request->title,
             'slug' => Str::slug($request->title),
