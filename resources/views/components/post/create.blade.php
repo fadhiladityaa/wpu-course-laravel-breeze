@@ -5,16 +5,17 @@
         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Create New Post!</h3>
     </div>
     <!-- Modal body -->
-    <form>
+    <form action="{{ route('post.store') }}" method="post">
+        @csrf
         <div class="mb-4">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-            <input type="text" name="name" id="name"
+            <input type="text" name="title" id="name"
                 class=" border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 placeholder="Type blog title" autocomplete="off" required>
         </div>
         <div class="mb-4">
             <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-            <select id="category" name="category"
+            <select id="category" name="category_id"
                 class=" border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                 <option selected="">Select category</option>
                 @foreach (App\Models\Category::get() as $category)
@@ -26,7 +27,7 @@
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Body</label>
             <textarea id="description" rows="4"
                 class="block p-2.5 w-full text-sm text-gray-900  rounded-md border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                placeholder="Write blog body here..." required></textarea>
+                placeholder="Write blog body here..." required name="body"></textarea>
         </div>
 
         <div class="flex gap-4">

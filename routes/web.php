@@ -42,9 +42,8 @@ Route::get('/contact', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', [PostDashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::post('/dashboard/post', [PostDashboardController::class, 'store'])->middleware(['auth', 'verified' ])->name('post.store');
 Route::get('/dashboard/create', [PostDashboardController::class, 'create'])->middleware(['auth', 'verified' ]);
-
 Route::get('/dashboard/{post:slug}', [PostDashboardController::class, 'show'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
