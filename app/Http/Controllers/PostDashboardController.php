@@ -58,7 +58,7 @@ class PostDashboardController extends Controller
             'body' => $request->body,
         ]);
 
-        return redirect('/dashboard');
+        return redirect('/dashboard')->with('store', 'Postingan Baru berhasil ditambahkan!');
     }
 
     /**
@@ -91,8 +91,9 @@ class PostDashboardController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect('/dashboard')->with('delete', 'Postingan Berhasil dihapus!');
     }
 }

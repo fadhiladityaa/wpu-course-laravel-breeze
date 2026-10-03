@@ -44,6 +44,7 @@ Route::get('/contact', function () {
 Route::get('/dashboard', [PostDashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::post('/dashboard/post', [PostDashboardController::class, 'store'])->middleware(['auth', 'verified' ])->name('post.store');
 Route::get('/dashboard/create', [PostDashboardController::class, 'create'])->middleware(['auth', 'verified' ]);
+Route::delete('/dashboard/{post:slug}', [PostDashboardController::class, 'destroy'])->middleware(['auth', 'verified' ]);
 Route::get('/dashboard/{post:slug}', [PostDashboardController::class, 'show'])->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
