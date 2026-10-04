@@ -102,6 +102,16 @@ class PostDashboardController extends Controller
             'body.required' => 'Lah ini yang paling penting malah gaada isinya!',
             'body.min' => 'Itu blog apa joni elo? pendek amat wkwk'
         ])->validate();
+
+        $post->update([
+            'title' => $request->title,
+            'slug' => Str::slug($request->title),
+            'author_id' => Auth::user()->id,
+            'category_id' => $request->category_id,
+            'body' => $request->body,
+        ]);
+
+        return redirect('/dashboard')->with('update', 'Postingan berhasil diupdate!');
     }
 
     /**
