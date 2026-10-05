@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -57,6 +57,17 @@
             @endif
         </div>
 
+        <div>
+            <label class="text-sm text-slate-700 font-medium" for="file_input">Avatar</label>
+            <input
+                class="cursor-pointer my-1 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full shadow-xs placeholder:text-body"
+                id="file_input" type="file">
+        </div>
+
+        <div>
+            <img class="w-14 h-14 rounded-base" src="/docs/images/people/profile-picture-5.jpg" alt="xl avatar">
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
@@ -65,5 +76,7 @@
                     class="text-sm text-gray-600">{{ __('Saved.') }}</p>
             @endif
         </div>
+        <label class="block mb-2.5 text-sm font-medium text-heading" for="file_input">Upload file</label>
+
     </form>
 </section>
