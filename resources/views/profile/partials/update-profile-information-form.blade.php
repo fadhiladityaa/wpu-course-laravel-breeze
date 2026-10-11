@@ -61,11 +61,15 @@
             <label class="text-sm text-slate-700 font-medium" for="file_input">Avatar</label>
             <input
                 class="cursor-pointer my-1 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full shadow-xs placeholder:text-body"
-                id="file_input" type="file">
+                id="file_input" type="file" accept="image/jpg, image/jpeg, image/png" name="avatar">
+            @error('avatar')
+                <p class="text-xs text-red-500">{{ $message }}</p>
+            @enderror
         </div>
 
         <div>
-            <img class="w-14 h-14 rounded-base" src="/docs/images/people/profile-picture-5.jpg" alt="xl avatar">
+            <img class="w-14 h-14 rounded-full" src="{{ asset('img/user-profile-avatar-icon-134114292.webp') }}"
+                alt="xl avatar">
         </div>
 
         <div class="flex items-center gap-4">
