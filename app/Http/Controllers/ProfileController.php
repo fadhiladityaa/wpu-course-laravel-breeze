@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -26,6 +27,13 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
+
+        $path = $request->file('avatar')->store('img', 'public');
+        $validated = $request->validated();
+        
+        $validated['avatar'] = $path;
+        dd($request->validated());
+
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {

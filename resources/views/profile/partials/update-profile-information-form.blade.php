@@ -67,9 +67,11 @@
             @enderror
         </div>
 
+        {{-- @dd(asset('storage/' . $user->avatar)) --}}
         <div>
-            <img class="w-14 h-14 rounded-full" src="{{ asset('img/user-profile-avatar-icon-134114292.webp') }}"
-                alt="xl avatar">
+            <img class="w-14 h-14 rounded-full"
+                src="{{ $user->avatar ? asset('storage/' . $user->avatar) : asset('img/user-profile-avatar-icon-134114292.webp') }} "
+                alt="{{ $user->name }}">
         </div>
 
         <div class="flex items-center gap-4">
